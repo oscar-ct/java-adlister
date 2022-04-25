@@ -28,4 +28,4 @@ public class HelloWorldServlet extends HttpServlet {
 //        - Define your logic in a FavoriteCity servlet
 //        - User System.out.println in the doPost method of servlet to verify that the city name has been sent to the server
 //
-//        4. (BONUS) Add logic similar to the the search lecture example where the user is redirected to a results page where they can see the output of their favorite city in the browser
+//        4. (BONUS) Add logic similar to the search lecture example where the user is redirected to a results page where they can see the output of their favorite city in the browser.
