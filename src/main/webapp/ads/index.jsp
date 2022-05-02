@@ -11,6 +11,8 @@
 
 <div class="container">
     <h1>Here Are all the ads!</h1>
+    <h1>Font color: <span>${sessionScope["font-color"]}</span></h1>
+    <h1>Background color: <span>${sessionScope["bg-color"]}</span></h1>
 
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
