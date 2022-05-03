@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
@@ -25,6 +26,9 @@ public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+//        String title = request.getParameter("ad-title");
+//        String description = request.getParameter("ad-desc");
+//
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         boolean validAttempt = username.equals("admin") && password.equals("password");
@@ -33,8 +37,18 @@ public class LoginServlet extends HttpServlet {
 //        if (isAdmin) {
 //            request.getSession().setAttribute("isAdmin", true);
 //        }
+
+
         if (validAttempt) {
+
+            ArrayList<Ad> ads = new ArrayList<>();
+
             request.getSession().setAttribute("user", username);
+            request.getSession().setAttribute("wishlist", ads);
+
+//            ads.add(new Ad (title, description));
+
+
             response.sendRedirect("/profile");
         } else {
             response.sendRedirect("/login");
