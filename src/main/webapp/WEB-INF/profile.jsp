@@ -11,6 +11,8 @@
     <div class="container">
         <h1>Welcome,  <span>${sessionScope["user"]}</span>!</h1>
         <h1>Viewing your profile.</h1>
+
+
     </div>
 
 </body>
