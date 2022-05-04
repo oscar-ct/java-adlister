@@ -3,9 +3,9 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.models.Ad;
 import com.mysql.cj.jdbc.Driver;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+//import java.io.FileInputStream;
+//import java.io.IOException;
+//import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,21 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+//    @Override
+//    public List<Ad> all() {
+////        Statement stmt = null;
+//        String query = "SELECT * FROM ads";
+//        try {
+//            PreparedStatement preparedStatement = connection.prepareStatement(query);
+////            stmt = connection.createStatement();
+//            ResultSet rs = preparedStatement.executeQuery();
+//            return createAdsFromResults(rs);
+//        } catch (SQLException e) {
+//            throw new RuntimeException("Error retrieving all ads.", e);
+//        }
+//    }
+
+
     @Override
     public List<Ad> all() {
         Statement stmt = null;
@@ -37,6 +52,25 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error retrieving all ads.", e);
         }
     }
+
+//    @Override
+//    public Long insert(Ad ad) {
+//        try {
+//            PreparedStatement preparedStatement = connection.prepareStatement(createInsertQuery(), Statement.RETURN_GENERATED_KEYS);
+//            preparedStatement.setLong(1, ad.getUserId());
+//            preparedStatement.setString(2, ad.getTitle());
+//            preparedStatement.setString(3, ad.getDescription());
+//            preparedStatement.executeQuery();
+////            Statement stmt = connection.createStatement();
+////            stmt.executeUpdate(createInsertQuery(ad), Statement.RETURN_GENERATED_KEYS);
+//            ResultSet rs = preparedStatement.getGeneratedKeys();
+//            rs.next();
+//            return rs.getLong(1);
+//        } catch (SQLException e) {
+//            throw new RuntimeException("Error creating a new ad.", e);
+//        }
+//    }
+
 
     @Override
     public Long insert(Ad ad) {
@@ -51,11 +85,15 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+//    private String createInsertQuery() {
+//        return "INSERT INTO adlister_db.ads(user_id, title, description) VALUES (?, ?, ?)";
+//    }
+
     private String createInsertQuery(Ad ad) {
         return "INSERT INTO ads(user_id, title, description) VALUES "
-            + "(" + ad.getUserId() + ", "
-            + "'" + ad.getTitle() +"', "
-            + "'" + ad.getDescription() + "')";
+                + "(" + ad.getUserId() + ", "
+                + "'" + ad.getTitle() +"', "
+                + "'" + ad.getDescription() + "')";
     }
 
     private Ad extractAd(ResultSet rs) throws SQLException {
