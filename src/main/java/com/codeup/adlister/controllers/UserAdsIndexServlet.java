@@ -1,5 +1,6 @@
 package com.codeup.adlister.controllers;
 
+
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
@@ -11,27 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
-public class CreateAdServlet extends HttpServlet {
+@WebServlet(name = "controllers.UserAdsIndexServlet", urlPatterns = "/profile/ads")
+public class UserAdsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
             return;
         }
-        request.getRequestDispatcher("/WEB-INF/ads/create.jsp")
-            .forward(request, response);
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         User user  = (User) request.getSession().getAttribute("user");
 
-        Ad ad = new Ad(
-                user.getId(), // for now we'll hardcode the user id
-                request.getParameter("title"),
-                request.getParameter("description")
-        );
-        DaoFactory.getAdsDao().insert(ad);
-        response.sendRedirect("/ads");
+        request.setAttribute("myads", DaoFactory.getAdsDao().all(user.getId()));
+
+
+//        request.setAttribute("ads", DaoFactory.getAdsDao().all());
+        request.getRequestDispatcher("/WEB-INF/ads/myads.jsp").forward(request, response);
     }
 }
+
