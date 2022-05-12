@@ -16,8 +16,19 @@
         <div class="col-md-6">
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
+            <p>${ad.priceInCents}</p>
+
+        <form method="post" action="/change100">
+            <input name="change100" type="hidden" value="${ad.id}">
+            <button>change to $100</button>
+        </form>
+        <form method="post" action="/add10">
+                <input name="add10" type="hidden" value="${ad.id}">
+                <button>add $10</button>
+        </form>
         </div>
     </c:forEach>
+
 </div>
 
 </body>
